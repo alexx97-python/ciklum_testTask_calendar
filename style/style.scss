@@ -1,0 +1,25 @@
+.calendar-wrapper{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-wrapper {
+        width: 100%;;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .calendar-table{
+        width: 100%;
+        border-collapse: collapse;
+
+        td {
+            border: 1px solid black;
+        }
+    }
+}
