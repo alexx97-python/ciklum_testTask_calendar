@@ -1,25 +1,24 @@
-.calendar-wrapper{
-    width: 90%;
-    margin: 0 auto;
+table{
+    border-collapse: collapse;
+}
+th, td{
+    border: 1px solid black;
+    padding: 0;
+}
+th{
+    text-transform: capitalize;
+}
+
+.event{
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-
-    .header-wrapper {
-        width: 100%;;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .calendar-table{
-        width: 100%;
-        border-collapse: collapse;
-
-        td {
-            border: 1px solid black;
-        }
-    }
+    width: 100%;
+    justify-content: space-between;
+    padding: 3px 10px;
+    background: #4caf50;
+    color: white;
+    box-sizing: border-box;
+}
+.event img{
+    margin-left: 5px;
 }
