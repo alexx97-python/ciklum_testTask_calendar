@@ -76,8 +76,21 @@ class Calendar{
         tbody.innerHTML = `${trs.join('')}`;
         document.body.append(table);
 
+        const navigation = document.createElement('div');
+
         this.getUsers();
-        document.body.prepend(this.renderUsers());
+        navigation.append(this.renderUsers());
+
+        const createBtn = document.createElement('button');
+        createBtn.innerText = 'New event +';
+        createBtn.classList = 'create-btn';
+        createBtn.addEventListener('click', function(){
+            console.log('Create')
+            location.href = '/create';
+        })
+        navigation.append(createBtn);
+
+        document.body.prepend(navigation);
     }
 
     fillData(userName){
