@@ -26,6 +26,13 @@ let data = {
 };
 const days = ['monday','tuesday','wednesday','thursday','friday'];
 
+// Setting data into local storage or fetting it from it
+if(localStorage.data === undefined){
+    localStorage.setItem('data', JSON.stringify(data));
+} else {
+    data = JSON.parse(localStorage.getItem('data'));
+}
+
 class Calendar{
 
     constructor(){
@@ -142,6 +149,10 @@ class Calendar{
                     day = td.dataset.day;
 
                 myCalendar.calendar[day][hour] = {};
+                data[day][hour] = {};
+                console.log(data);
+                localStorage.setItem('data', JSON.stringify(data));
+
                 myCalendar.renderData();
             })
         });
