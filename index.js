@@ -59,7 +59,7 @@ class Calendar{
             hour = 10;
 
         for(let i=10; i<=18; i++){
-            let tds = [`<td>${hour}</td>`];
+            let tds = [`<td>${hour}:00</td>`];
 
             for(let td=0; td<days.length; td++){
                 tds.push(`<td data-hour="${hour}" data-day="${days[td]}"></td>`);
@@ -84,15 +84,15 @@ class Calendar{
         document.body.append(table);
 
         const navigation = document.createElement('div');
+        navigation.classList = 'navigation-section'
 
         this.getUsers();
         navigation.append(this.renderUsers());
 
         const createBtn = document.createElement('button');
         createBtn.innerText = 'New event +';
-        createBtn.classList = 'create-btn';
+        createBtn.classList = 'create-btn btn btn-success';
         createBtn.addEventListener('click', function(){
-            console.log('Create')
             location.href = '/create';
         })
         navigation.append(createBtn);
@@ -177,6 +177,7 @@ class Calendar{
         }
 
         let select = document.createElement('select');
+        select.classList='btn btn-info dropdown-toggle'
         select.innerHTML = `${options.join('')}`;
 
         select.addEventListener('change',this.getUserEvent);

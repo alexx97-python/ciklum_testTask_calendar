@@ -1,14 +1,52 @@
 table {
   border-collapse: collapse;
+  width: 90%;
+  height: 90%;
+  margin: 0 auto;
+  font-size: 26px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-th, td {
+table th, table td {
   border: 1px solid black;
   padding: 0;
+  text-align: center;
 }
 
-th {
+table th {
   text-transform: capitalize;
+}
+
+table td {
+  width: 15%;
+  height: 10%;
+}
+
+table td img {
+  color: white;
+}
+
+table td img:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.navigation-section {
+  text-align: right;
+  margin: 10px 10% 20px 0;
+}
+
+.navigation-section select, .navigation-section button {
+  color: white;
+  font-weight: 600;
+  font-size: 24px;
+  border: none;
+  margin-left: 10px;
+}
+
+.navigation-section select:hover, .navigation-section button:hover {
+  color: black;
 }
 
 .event {
@@ -31,5 +69,61 @@ th {
 
 .event img {
   margin-left: 5px;
+}
+
+.eventCretor-wrapper {
+  height: 60vh;
+  width: 50%;
+  margin: 5% auto;
+  padding: 30px;
+  font-size: 26px;
+  background: lightblue;
+  border-radius: 5px;
+}
+
+.eventCretor-wrapper form {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.eventCretor-wrapper form div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.eventCretor-wrapper form .form-btns {
+  width: 80%;
+  margin: 10px auto;
+}
+
+.eventCretor-wrapper form .form-btns button {
+  color: white;
+  font-weight: 600;
+  border: none;
+  width: 40%;
+  border-radius: 5px;
+}
+
+.eventCretor-wrapper form label, .eventCretor-wrapper form input, .eventCretor-wrapper form select {
+  width: 45%;
+  padding: 5px;
 }
 /*# sourceMappingURL=style.css.map */

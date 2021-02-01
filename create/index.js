@@ -4,6 +4,7 @@ const data = JSON.parse(localStorage.getItem('data'));
 
 function renderCreateForm (){
     const wrapper = document.createElement('div');
+    wrapper.classList = 'eventCretor-wrapper'
 
     const form = document.createElement('form');
 
@@ -49,15 +50,16 @@ function renderCreateForm (){
     div4.append(label4, select_time);
 
     const div5 = document.createElement('div');
+    div5.classList = 'form-btns'
     const create_btn = document.createElement('button');
     create_btn.addEventListener('click', createBtnHandler);
     create_btn.innerText = 'Create';
-    create_btn.classList.add('create-btn')
+    create_btn.classList.add('create-btn', 'btn', 'btn-success')
     const cancel_btn = document.createElement('button');
     cancel_btn.addEventListener('click', cancelBtnHandler);
     cancel_btn.innerText = 'Cancel';
-    cancel_btn.classList.add('cancel-btn');
-    div5.append(create_btn, cancel_btn);
+    cancel_btn.classList.add('cancel-btn', 'btn', 'btn-warning');
+    div5.append(cancel_btn, create_btn);
 
     form.append(div1, div2, div3, div4, div5);
     wrapper.append(form);
@@ -72,8 +74,17 @@ function createBtnHandler (e){
     const time = document.querySelector('.select-time-form').value;
 
     if (data[day] !== undefined && data[day][time] !== undefined && Object.keys(data[day][time]).length > 0){
-        console.log('This day and time is taken')
+        let message = `
+        <div class="alert alert-danger" role="alert">
+            This is a danger alert—check it out!
+        </div>`
+        document.querySelector('body').insertAdjacentHTML('afterbegin', message);
     } else {
+        let message = `
+        <div class="alert alert-success" role="alert">
+            This is a success alert—check it out!
+        </div>`
+        document.querySelector('body').insertAdjacentHTML('afterbegin', message);
         console.log('Setting')
         data[day] = {
             ...data[day],
@@ -82,12 +93,13 @@ function createBtnHandler (e){
             users: participants
             }
         }
+        setTimeout( ()=> {
+            location.href = '/';
+        }, 2000)
     }
 
     console.log(data);
     localStorage.setItem('data', JSON.stringify(data));
-
-
 
 }
 
@@ -95,5 +107,32 @@ function cancelBtnHandler(e){
     e.preventDefault();
     location.href = '/';
 }
+
+
+// Not sure, 
+function renderUsers(){
+    let users = [];
+
+    for(let key in data){
+        for(let event in data[key]){
+            users.push(data[key][event].users);
+        }
+    }
+
+    users = users.flat().filter((v, i, a) => a.indexOf(v) === i);
+
+    let options = ['<option value="all">All users</option>'];
+    for(let key in users){
+        options.push(`<option data-user="${users[key]}">${users[key]}</option>`)
+    }
+
+    let select = document.createElement('select');
+    select.classList='btn btn-info dropdown-toggle'
+    select.innerHTML = `${options.join('')}`;
+
+    select.addEventListener('change',data.getUserEvent);
+    return select;
+}
+
 
 renderCreateForm();
