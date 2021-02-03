@@ -26,6 +26,9 @@ let data = {
 };
 const days = ['monday','tuesday','wednesday','thursday','friday'];
 const users = ['Anna', 'Ivan', 'Oleg', 'Irina', 'Alex', 'David', 'Mark'];
+const HOUR_START = 10;
+const HOUR_END = 18;
+let HOURS = [];
 
 // Setting data into local storage or fetting it from it
 localStorage.setItem('users', JSON.stringify(users));
@@ -49,7 +52,7 @@ class Calendar{
 
         days.forEach(function(day){
             let hours = {};
-            for(let i=10; i<=18; i++){
+            for(let i=HOUR_START; i<=HOUR_END; i++){
                 hours[i] = {};
             }
             calendar[day] = hours;
@@ -63,7 +66,7 @@ class Calendar{
             trs = [],
             hour = 10;
 
-        for(let i=10; i<=18; i++){
+        for(let i=HOUR_START; i<=HOUR_END; i++){
             let tds = [`<td>${hour}:00</td>`];
 
             for(let td=0; td<days.length; td++){
@@ -149,14 +152,20 @@ class Calendar{
             btn.addEventListener('click',function(e){
                 let td = this.closest('td'),
                     hour = td.dataset.hour,
-                    day = td.dataset.day;
+                    day = td.dataset.day,
+                    title = td.querySelector('.event').innerText,
+                    allow = confirm(`Are you sure you want to delete '${title}' event?`)
+                
+                if (allow){
+                    myCalendar.calendar[day][hour] = {};
+                    data[day][hour] = {};
 
-                myCalendar.calendar[day][hour] = {};
-                data[day][hour] = {};
+                    localStorage.setItem('data', JSON.stringify(data));
 
-                localStorage.setItem('data', JSON.stringify(data));
-
-                myCalendar.renderData();
+                    myCalendar.renderData();
+                } else {
+                    return null;
+                }
             })
         });
     }
