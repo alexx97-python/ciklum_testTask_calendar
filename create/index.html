@@ -8,6 +8,36 @@
     <link rel="stylesheet" href=".././style/style.css">
 </head>
 <body>
+    <div class="eventCreator-wrapper">
+        <form>
+            <div>
+                <label for="event-name">Name of The Event</label>
+                <input type="text" name="event-name" id='eventTitleInput' required>
+            </div>
+            <div>
+                <label for="participants">Participants: </label>
+                <select name="participants" id="participants" multiple required>
+
+                </select>
+            </div>
+            <div>
+                <label for="days">Day:</label>
+                <select name="days" id="calendar-days" required>
+
+                </select>
+            </div>
+            <div>
+                <label for="time">Time:</label>
+                <select name="time" id="time" required>
+
+                </select>
+            </div>
+            <div class="form-btns">
+                <button class="create-btn btn btn-success" id="createBtn" type="submit">Create</button>
+                <button class="cancel-btn btn btn-warning" id="cancelBtn">Cancel</button>
+            </div>
+        </form>
+    </div>
 
 <script src="./index.js">
 

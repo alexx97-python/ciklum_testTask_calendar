@@ -25,8 +25,12 @@ let data = {
     }
 };
 const days = ['monday','tuesday','wednesday','thursday','friday'];
+const users = ['Anna', 'Ivan', 'Oleg', 'Irina', 'Alex', 'David', 'Mark'];
 
 // Setting data into local storage or fetting it from it
+localStorage.setItem('users', JSON.stringify(users));
+localStorage.setItem('days', JSON.stringify(days));
+
 if(localStorage.data === undefined){
     localStorage.setItem('data', JSON.stringify(data));
 } else {
@@ -40,7 +44,7 @@ class Calendar{
     }
 
     createCalendar(){
-        // creates layout(objeсt) for calendar
+        // creates layout(objeсt) of calendar data
         let calendar = {};
 
         days.forEach(function(day){
@@ -54,6 +58,7 @@ class Calendar{
     }
 
     renderCalendar(){
+       //displays the calendar table
         let ths = [],
             trs = [],
             hour = 10;
@@ -109,7 +114,6 @@ class Calendar{
                 for(let event in data[key]){
                     if(userName){
                         if(data[key][event].users && data[key][event].users.includes(userName)){
-                            //console.log(data[key][event]);
                             dayInMyCL[event] = data[key][event];
                         } else{
                             dayInMyCL[event] = '';
@@ -120,7 +124,6 @@ class Calendar{
                 }
             }
         }
-
         this.renderData();
     }
 
@@ -144,13 +147,13 @@ class Calendar{
         let removeEvents = document.querySelectorAll('.removeEvent');
         removeEvents.forEach(function(btn){
             btn.addEventListener('click',function(e){
-                let td = this.parentElement.parentElement,
+                let td = this.closest('td'),
                     hour = td.dataset.hour,
                     day = td.dataset.day;
 
                 myCalendar.calendar[day][hour] = {};
                 data[day][hour] = {};
-                console.log(data);
+
                 localStorage.setItem('data', JSON.stringify(data));
 
                 myCalendar.renderData();
@@ -159,14 +162,6 @@ class Calendar{
     }
 
     getUsers(){
-        let users = [];
-
-        for(let key in data){
-            for(let event in data[key]){
-                users.push(data[key][event].users);
-            }
-        }
-
         myCalendar.users = users.flat().filter((v, i, a) => a.indexOf(v) === i);
     }
 
